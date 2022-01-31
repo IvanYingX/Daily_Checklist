@@ -8,7 +8,6 @@ class SQLHelper:
     DATABASE_TYPE = 'postgresql'
     DBAPI = 'psycopg2'
     def __init__(self, credentials:dict, database_type:str='postgresql', db_api:str='psycopg2'):
-        credentials = self.get_credentials(credentials)
         self.engine = create_engine(f"{database_type}+{db_api}://{credentials['RDS_USER']}:{credentials['RDS_PASSWORD']}@{credentials['RDS_HOST']}:{credentials['RDS_PORT']}/{credentials['RDS_DATABASE']}")
         self.engine.connect()
     
