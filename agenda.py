@@ -105,8 +105,8 @@ if __name__ == '__main__':
         room_idx = new_room_idx
         daily_checklist.merge(f'A{cohort_cell}:A{cell -1}')
         cohort_cell = cell
-        # with open(f'{messages_dir}/{group_name}.txt', 'w') as f:
-        #     f.write(text)
+        with open(f'agenda_files/messages_to_send_to_groups/{group_name}.txt', 'w') as f:
+            f.write(text)
 
 
 # %%
