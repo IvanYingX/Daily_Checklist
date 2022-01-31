@@ -81,7 +81,7 @@ if __name__ == '__main__':
     room_idx = 3
     cell = cohort_cell = 2
     # Get the list of students and their corresponding groups
-    people, group_names = get_students_groups()
+    people, group_names = get_students_groups(sql_creds)
     # Get the list of events from the google sheet
     records_df = get_today_records()
     # Filter events that are taking place today
