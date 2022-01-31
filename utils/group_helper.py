@@ -114,7 +114,7 @@ def get_first_element_by_group(df, column: str = 'user_id'):
             )
 
 
-def get_students_info(sql_credentials: str):
+def get_students_info():
     '''
     Return a dataframe with the information about enrolled
     students and their last attempted quiz
@@ -130,7 +130,7 @@ def get_students_info(sql_credentials: str):
     df: pd.DataFrame
         Dataframe with the information about enrolled students
     '''
-    helper = sqlh(credentials=sql_credentials)
+    helper = sqlh()
     students_df = helper.df_from_table('students')
     user_df = helper.df_from_table('users')
     quiz_scores = helper.df_from_table('quiz_scores')
@@ -284,5 +284,5 @@ def generate_rooms(people, group_name, room_idx, instructor=False):
 
 
 if __name__ == '__main__':
-    people = get_students_info('../config/RDS_config.yaml')
+    people = get_students_info()
 # %%

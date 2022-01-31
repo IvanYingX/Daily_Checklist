@@ -7,13 +7,12 @@ import pandas as pd
 class SQLHelper:
     DATABASE_TYPE = 'postgresql'
     DBAPI = 'psycopg2'
-    def __init__(self, credentials:str, database_type:str='postgresql', db_api:str='psycopg2'):
+    def __init__(self, credentials:str = os.environ['RDS_CREDENTIALS'], database_type:str='postgresql', db_api:str='psycopg2'):
         credentials = self.get_credentials(credentials)
         self.engine = create_engine(f"{database_type}+{db_api}://{self.user}:{self.password}@{self.host}:{self.port}/{self.database}")
         self.engine.connect()
         
     def get_credentials(self, credentials:str=None):
-        credentials = os.environ['RDS_CREDENTIALS']
         self.user = credentials["RDS_USER"]
         self.password = credentials["RDS_PASSWORD"]
         self.host = credentials["RDS_HOST"]
