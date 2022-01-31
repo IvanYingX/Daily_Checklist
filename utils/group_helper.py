@@ -114,7 +114,7 @@ def get_first_element_by_group(df, column: str = 'user_id'):
             )
 
 
-def get_students_info(sql_credentials: str = 'config/RDS_config.yaml'):
+def get_students_info(sql_credentials: str):
     '''
     Return a dataframe with the information about enrolled
     students and their last attempted quiz
