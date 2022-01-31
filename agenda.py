@@ -68,6 +68,7 @@ checklist = ['Cohort',
              'Any comment?']
 # messages_dir = 'agenda_files/messages_to_send_to_groups'
 google_creds = os.environ['GOOGLE_CREDENTIALS']
+print(google_creds)
 google_creds = json.loads(google_creds)
 sql_creds = os.environ['SQL_CREDENTIALS']
 sql_creds = json.loads(sql_creds)
