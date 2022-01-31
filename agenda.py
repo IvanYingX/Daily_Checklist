@@ -7,7 +7,7 @@ from utils.AgendaHelper import print_daily_agenda
 from utils.group_helper import get_students_groups, generate_rooms
 import os
 import json
-
+import urllib.request
 def clean_dict(group: dict) -> pd.DataFrame:
     group_df = pd.DataFrame(group)
     group_df['Breakout Room'] = room_idx
@@ -67,9 +67,9 @@ checklist = ['Cohort',
              'Updated their project tasks',
              'Any comment?']
 # messages_dir = 'agenda_files/messages_to_send_to_groups'
-google_creds = os.environ['GOOGLE_CREDENTIALS']
-print(google_creds)
-google_creds = json.loads(google_creds)
+
+with urllib.request.urlopen("https://aicore-files.s3.amazonaws.com/google_credentials.json") as url:
+    google_creds = json.loads(url.read().decode())
 sql_creds = os.environ['RDS_CREDENTIALS']
 sql_creds = json.loads(sql_creds)
 sql_pass = {"RDS_PASSWORD": os.environ['RDS_PASSWORD']}
