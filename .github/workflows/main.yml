@@ -35,4 +35,5 @@ jobs:
         env: 
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
           RDS_CREDENTIALS: ${{ secrets.RDS_CREDENTIALS }}
+          RDS_PASSWORD: ${{ secrets.RDS_PASSWORD }}
         run: python3 agenda.py 
