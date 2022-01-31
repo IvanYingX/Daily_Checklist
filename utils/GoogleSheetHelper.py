@@ -5,7 +5,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 import datetime
 from gspread.exceptions import APIError
 import time
-
+import os
 
 def wait(seconds):
     for x in range(seconds):
@@ -155,7 +155,7 @@ class GoogleSheetHelper:
         self.sheet.merge_cells(range)
 
     @staticmethod
-    def __connect_to_google_sheet(credentials) -> None:
+    def __connect_to_google_sheet(credentials: dict) -> None:
         '''
         Connects to the google sheet
 
@@ -170,15 +170,12 @@ class GoogleSheetHelper:
             The client for the google sheet
         '''
 
-        if credentials is None:
-            credentials = 'config/google_credentials.json'
-
         scope = ['https://spreadsheets.google.com/feeds',
                  'https://www.googleapis.com/auth/drive']
 
         # add credentials to the account
 
-        creds = ServiceAccountCredentials.from_json_keyfile_name(credentials,
+        creds = ServiceAccountCredentials.from_json_keyfile_dict(credentials,
                                                                  scope)
 
         # authorize the clientsheet
@@ -191,7 +188,7 @@ class GoogleSheetHelper:
 
 
 def retrieve_and_log_daily_results():
-    daily_checklist = GoogleSheetHelper('config/google_credentials.json',
+    daily_checklist = GoogleSheetHelper(os.environ['GOOGLE_CREDENTIALS'],
                                         'Daily Checklist',
                                         'Main'
                                         )

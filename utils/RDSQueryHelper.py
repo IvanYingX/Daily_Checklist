@@ -19,12 +19,13 @@ class RDSQueryHelper:
 
     @staticmethod
     def get_credentials():
+        credentials = os.environ['RDS_CREDENTIALS']
         return {
-            "user": os.environ["RDS_USER"],
-            "password": os.environ["RDS_PASSWORD"],
-            "host": os.environ["RDS_HOST"],
-            "port": os.environ["RDS_PORT"],
-            "database": os.environ["RDS_DATABASE"],
+            "user": credentials["RDS_USER"],
+            "password": credentials["RDS_PASSWORD"],
+            "host": credentials["RDS_HOST"],
+            "port": credentials["RDS_PORT"],
+            "database": credentials["RDS_DATABASE"],
         }
 
     def close_connection(self):
