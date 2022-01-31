@@ -72,6 +72,8 @@ print(google_creds)
 google_creds = json.loads(google_creds)
 sql_creds = os.environ['RDS_CREDENTIALS']
 sql_creds = json.loads(sql_creds)
+sql_pass = {"RDS_PASSWORD": os.environ['RDS_PASSWORD']}
+sql_creds = {**sql_creds, **sql_pass}
 # slack_creds = os.environ['SLACK_CREDENTIALS']
 # %%
 if __name__ == '__main__':
