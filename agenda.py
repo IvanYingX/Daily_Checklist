@@ -6,6 +6,7 @@ from utils.AgendaHelper import filter_today_events
 from utils.AgendaHelper import print_daily_agenda
 from utils.group_helper import get_students_groups, generate_rooms
 import os
+import json
 
 def clean_dict(group: dict) -> pd.DataFrame:
     group_df = pd.DataFrame(group)
@@ -67,6 +68,10 @@ checklist = ['Cohort',
              'Any comment?']
 # messages_dir = 'agenda_files/messages_to_send_to_groups'
 google_creds = os.environ['GOOGLE_CREDENTIALS']
+google_creds = json.loads(google_creds)
+sql_creds = os.environ['SQL_CREDENTIALS']
+sql_creds = json.loads(sql_creds)
+# slack_creds = os.environ['SLACK_CREDENTIALS']
 # %%
 if __name__ == '__main__':
     # retrieve_and_log_daily_results()

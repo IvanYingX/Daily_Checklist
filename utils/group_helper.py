@@ -114,7 +114,7 @@ def get_first_element_by_group(df, column: str = 'user_id'):
             )
 
 
-def get_students_info():
+def get_students_info(sql_creds:dict):
     '''
     Return a dataframe with the information about enrolled
     students and their last attempted quiz
@@ -130,7 +130,7 @@ def get_students_info():
     df: pd.DataFrame
         Dataframe with the information about enrolled students
     '''
-    helper = sqlh()
+    helper = sqlh(credentials=sql_creds)
     students_df = helper.df_from_table('students')
     user_df = helper.df_from_table('users')
     quiz_scores = helper.df_from_table('quiz_scores')
@@ -252,13 +252,13 @@ def get_students_info():
     return people
 
 
-def get_students_groups():
+def get_students_groups(sql_creds:dict):
     '''
     Return a list of dictionaries with
     info about each student
     groups of students'''
 
-    people = get_students_info()
+    people = get_students_info(sql_creds)
 
     unique_start_dates = {p['start_date'] for p in people}
     group_names = get_group_names(unique_start_dates)
