@@ -5,7 +5,7 @@ from utils.GoogleSheetHelper import GoogleSheetHelper as gsh
 from utils.AgendaHelper import filter_today_events
 from utils.AgendaHelper import print_daily_agenda
 from utils.group_helper import get_students_groups, generate_rooms
-
+import os
 
 def clean_dict(group: dict) -> pd.DataFrame:
     group_df = pd.DataFrame(group)
@@ -66,7 +66,7 @@ checklist = ['Cohort',
              'Updated their project tasks',
              'Any comment?']
 # messages_dir = 'agenda_files/messages_to_send_to_groups'
-google_creds = 'config/google_credentials.json'
+google_creds = os.environ['GOOGLE_CREDENTIALS']
 # %%
 if __name__ == '__main__':
     # retrieve_and_log_daily_results()

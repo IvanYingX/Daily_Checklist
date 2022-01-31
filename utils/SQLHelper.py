@@ -12,21 +12,13 @@ class SQLHelper:
         self.engine = create_engine(f"{database_type}+{db_api}://{self.user}:{self.password}@{self.host}:{self.port}/{self.database}")
         self.engine.connect()
         
-    @staticmethod
-    def read_credentials(credentials:str):
-        with open(credentials, 'r') as f:
-            config = yaml.safe_load(f)
-            for key, value in config.items():
-                os.environ[key] = value
-
     def get_credentials(self, credentials:str=None):
-        if credentials:
-            self.read_credentials(credentials)
-        self.user = os.environ["RDS_USER"]
-        self.password = os.environ["RDS_PASSWORD"]
-        self.host = os.environ["RDS_HOST"]
-        self.port = os.environ["RDS_PORT"]
-        self.database = os.environ["RDS_DATABASE"]
+        credentials = os.environ['RDS_CREDENTIALS']
+        self.user = credentials["RDS_USER"]
+        self.password = credentials["RDS_PASSWORD"]
+        self.host = credentials["RDS_HOST"]
+        self.port = credentials["RDS_PORT"]
+        self.database = credentials["RDS_DATABASE"]
     
 
     def inspect_tables(self):
