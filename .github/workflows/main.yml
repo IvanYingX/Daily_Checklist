@@ -33,6 +33,6 @@ jobs:
       
       - name: Run the script
         env: 
-          GOOGLE_CREDENTIALS: ${{ SECRETS.GOOGLE_CREDENTIALS }}
-          RDS_CREDENTIALS: ${{ SECRETS.RDS_CREDENTIALS }}
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+          RDS_CREDENTIALS: ${{ secrets.RDS_CREDENTIALS }}
         run: python3 agenda.py 
