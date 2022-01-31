@@ -1,0 +1,48 @@
+Hi squad
+
+Here's what's happening today:
+- 1830-1930: Focused independent work on your next project task, or reading the related content
+- 1930-2130: Work with your peers on your next project task
+- 2030-2100: Demo hosted by Harry: Python best practices and code style. Harry will show youa demonstration of good and bad practices in Python. The demo will be hosted in room 2. Difficulty: Beginner
+
+Here's where we recommend you to be:
+- Room 27
+	- Daniel
+	- Alasdair
+	- Yamin
+- Room 28
+	- Edward
+	- Misha
+	- Patrick
+- Room 29
+	- Kaiomurz
+	- Amy
+	- Adam
+- Room 30
+	- Jonny
+	- Martin
+	- Ossama
+- Room 31
+	- Rexhino
+	- Dax
+	- Peter
+- Room 32
+	- Sidhu
+	- Yiqin
+	- Gemma
+- Room 33
+	- Kehinde 
+	- Sagal
+	- Abdullah
+- Room 34
+	- Kelechi
+	- Nicholas
+	- Ewen
+- Room 35
+	- Laura
+	- Michael
+	- Ceridwen
+- Room 36
+	- Nasir
+	- Mileti
+	- Linda

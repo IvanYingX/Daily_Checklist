@@ -1,0 +1,47 @@
+Hi squad
+
+Here's the plan for today:
+- 1830-1930: Focused pre-reading until you are ready to get hands-on
+- 1930-2100: Work together on practicals
+- 2030 (yes earlier than we said yesterday)-2130: Christmas quiz
+
+Here's the rooms:
+- Room 19
+	- nasir yousuf. Lesson: The Python Environment
+	- Kehinde  Omobomi. Lesson: Lists and Sets
+	- kelechi Daniels. Lesson: Dictionaries Tuples and Operators
+- Room 20
+	- Sidhu Munasinghe. Lesson: Dictionaries Tuples and Operators
+	- Nicholas Hawthorne. Lesson: Functions
+	- Peter Sandwith. Lesson: Object Oriented Programming
+- Room 21
+	- Alasdair Kelly. Lesson: Object Oriented Programming
+	- Ceridwen Reed. Lesson: Advanced Python
+	- Mileti Chakarov. Lesson: Advanced Python
+- Room 22
+	- Yiqin Liu. Lesson: Advanced Python
+	- Gemma Baldock. Lesson: Advanced Python
+	- Daniel Goronwy. Lesson: Advanced Python
+- Room 23
+	- Sagal Abdulaahi. Lesson: Error Handling
+	- Edward Cliffe. Lesson: Error Handling
+	- Misha Siddiqui. Lesson: Error Handling
+- Room 24
+	- Rexhino Rexhepi. Lesson: Debugging
+	- Yamin Miah. Lesson: Debugging
+	- Adam Wise. Lesson: Numpy
+- Room 25
+	- Laura Lewis. Lesson: Intro to Pandas
+	- Amy Winder. Lesson: Intro to Pandas
+	- Dax Levey. Lesson: Intro to Pandas
+- Room 26
+	- Abdullah Safdar. Lesson: APIs and requests
+	- Jonny Holmes. Lesson: APIs and requests
+	- Patrick Govus. Lesson: Big O Notation
+- Room 27
+	- Martin Sheard. Lesson: Big O Notation
+	- Michael Huo. Lesson: Big O Notation
+	- Ewen Garrod. Lesson: Inheritance, Polymorphism, Abstraction and Encapsulation
+- Room 28
+	- Kaiomurz Motawara. Lesson: Docstring and Typing
+	- Ossama El Sanharawi. Lesson: SQL Basics

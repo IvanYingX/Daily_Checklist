@@ -1,0 +1,19 @@
+Hi team
+
+Here's the agenda for today:
+- 1830-1930: Do your thing
+- 1900-1930: Demo hosted by Blair: Writing clean Python code
+- 1930-2100: Work together on practicals
+- 2100-2130: Smash that quiz
+
+- Room 17
+	- Hristo Petkov
+	- Olumide Fatokun
+- Room 18
+	- Ishtyaq Nabi
+	- Simeon Bamgbaye
+	- Tafadzwa Zama
+- Room 19
+	- Ana-Maria Dicu
+	- Harry Smith
+	- Victor Bamgbaye

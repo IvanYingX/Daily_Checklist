@@ -1,0 +1,16 @@
+What's up team?
+
+Here's the schedule for today:
+- 1830-1930: Focused pre-reading until you are ready to get hands-on
+- 1930-2100: Work together on practicals
+- 2030 (yes earlier than we said yesterday)-2130: Christmas quiz
+
+Here's the groups:
+- Room 8
+	- Victor Bamgbaye. Lesson: Kafka Overview
+	- Simeon Bamgbaye. Lesson: Kafka Topology and Components
+	- James Deehan. Lesson: Control Flow
+- Room 9
+	- Tamim Ehsan. Lesson: Object Oriented Programming
+	- Ishtyaq Nabi. Lesson: SQL Basics
+	- Jason Ebblewhite. Lesson: Intro to Docker

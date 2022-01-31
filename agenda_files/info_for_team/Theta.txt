@@ -1,0 +1,24 @@
+Hello squad
+
+Here's what we should all be doing today:
+- 1830-1930: Focused pre-reading until you are ready to get hands-on
+- 1930-2100: Work together on practicals
+- 2030 (yes earlier than we said yesterday)-2130: Christmas quiz
+
+Here's the groups for today:
+- Room 2
+	- James Moody. Lesson: Data Cleaning in Pandas
+	- Wayne Rose. Lesson: EDA and Basic Visualisation
+	- Miruna Nitu. Lesson: Missing Data
+- Room 3
+	- Carys Williams. Lesson: Missing Data
+	- Luke Gardiner. Lesson: Spark Theory
+	- Pascal Li Poo Kim. Lesson: Stream Processing and APIs
+- Room 4
+	- Omar Tahmas. Lesson: Data visualisation
+	- Daniel Zakaiem. Lesson: Validation and Testing
+	- Nishaal Ajmera. Lesson: Lists and Sets
+- Room 5
+	- Zakee Ahktar. Lesson: Docstring and Typing
+	- Adaobi Nwafor. Lesson: Intro to Docker
+	- Imran Raza. Lesson: GitHub Actions

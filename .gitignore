@@ -1,0 +1,10 @@
+__pycache__/
+.DS_Store
+dist/
+*.egg-info/
+*.ipynb
+*/config/*
+config/*
+!config/.gitkeep
+*/logs/*
+!*/logs/*.gitkeep

@@ -1,0 +1,14 @@
+What's up team?
+
+Here's the schedule for today:
+- 1830-1930: Focused pre-reading until you are ready to get hands-on
+- 1930-2100: Work together on practicals
+- 2030 (yes earlier than we said yesterday)-2130: Christmas quiz
+
+Here's the groups for today:
+- Room 10
+	- Shahbaz Khader. Lesson: Git & GitHub
+	- Kishaan Sutharsan. Lesson: The Python Environment
+	- Gagandip Sehmbi. Lesson: Arithmetic Variable Assignment and Strings
+- Room 11
+	- Nipunn Khurana. Lesson: Loops

@@ -1,0 +1,24 @@
+Hi all
+
+Here's what we're doing today:
+- 1830-1930: Focused pre-reading until you are ready to get hands-on
+- 1930-2100: Work together on practicals
+- 2030 (yes earlier than we said yesterday)-2130: Christmas quiz
+
+Here's where we recommend you to be:
+- Room 12
+	- Ahsan Muzafar. Lesson: Web Scraping
+	- Darrel Anderson. Lesson: SQL Basics
+	- Dhaval Kakadiya. Lesson: Joins
+- Room 13
+	- Luqman Awoniyi. Lesson: Joins
+	- James Overend. Lesson: Joins
+	- Euan Wrigglesworth. Lesson: Aggregations
+- Room 14
+	- Regina Aiken. Lesson: Aggregations
+	- Mateusz Baran. Lesson: Subqueries
+	- Joseph Solomon. Lesson: Subqueries
+- Room 15
+	- Arman Hameed. Lesson: Subqueries
+	- Quratulaen Ikram. Lesson: pyscopg2 and SQLAlchemy
+	- Dan Bouchard. Lesson: pyscopg2 and SQLAlchemy

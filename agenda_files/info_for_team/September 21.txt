@@ -1,0 +1,14 @@
+Hello squad
+
+Here's the schedule for today:
+- 1830-1930: Focused pre-reading until you are ready to get hands-on
+- 1930-2100: Work together on practicals
+- 2030 (yes earlier than we said yesterday)-2130: Christmas quiz
+
+Here's where we recommend you to be:
+- Room 6
+	- Daniel Lund. Lesson: Hypothesis Testing - A Brief Introduction
+	- Ovidiu Popa. Lesson: Hypothesis Testing - A Brief Introduction
+	- Dilan Lodhia. Lesson: Data for ML
+- Room 7
+	- Faiz Meghjee. Lesson: Grafana

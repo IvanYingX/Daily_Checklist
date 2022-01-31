@@ -1,0 +1,18 @@
+Hello squad
+
+Here's what we should all be doing today:
+- 1830-1930: Focused pre-reading until you are ready to get hands-on
+- 1930-2100: Work together on practicals
+- 2030 (yes earlier than we said yesterday)-2130: Christmas quiz
+
+Here's where we recommend you to be:
+- Room 16
+	- Harry Smith. Lesson: Stream Processing and APIs
+	- Ana-Maria Dicu. Lesson: Stream Processing and APIs
+	- Yuya Ra. Lesson: Command Line
+- Room 17
+	- Milan Sajiv. Lesson: Web Scraping
+	- Olumide Fatokun. Lesson: Joins
+	- Easha Tu Razia. Lesson: Aggregations
+- Room 18
+	- Marianna Karavangeli. Lesson: GitHub Actions
