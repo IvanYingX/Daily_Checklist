@@ -70,7 +70,7 @@ checklist = ['Cohort',
 google_creds = os.environ['GOOGLE_CREDENTIALS']
 print(google_creds)
 google_creds = json.loads(google_creds)
-sql_creds = os.environ['SQL_CREDENTIALS']
+sql_creds = os.environ['RDS_CREDENTIALS']
 sql_creds = json.loads(sql_creds)
 # slack_creds = os.environ['SLACK_CREDENTIALS']
 # %%
