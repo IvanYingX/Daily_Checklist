@@ -30,7 +30,17 @@ jobs:
       
       - name: Install packages
         run: pip install -r requirements.txt
-      
+        
+      - name: "Configure AWS Credentials"
+        # You may pin to the exact commit or the version.
+        # uses: aws-actions/configure-aws-credentials@05b148adc31e091bafbaf404f745055d4d3bc9d2
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          # AWS Access Key ID. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
+          aws-access-key-id: AKIASOP6HHLP4R4LBQOU
+          aws-secret-access-key: uUyQ53uGsIZ5AonyeeeB3ExSt5xbyhYF56+33wrW
+          aws-region: eu-west-3
+
       - name: Run the script
         env: 
           RDS_CREDENTIALS: ${{ secrets.RDS_CREDENTIALS }}
