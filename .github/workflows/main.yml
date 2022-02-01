@@ -37,5 +37,5 @@ jobs:
           RDS_HOST: ${{ secrets.RDS_HOST }}
           RDS_PORT: ${{ secrets.RDS_PORT }}
           RDS_DATABASE: ${{ secrets.RDS_DATABASE }}
-          SLACK_CREDENTIALS: ${{ secrets.SLACK_CREDENTIAL }}
+          SLACK_CREDENTIALS: ${{ secrets.SLACK_CREDENTIALS }}
         run: python3 agenda.py 
