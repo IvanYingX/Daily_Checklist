@@ -33,7 +33,11 @@ jobs:
       
       - name: Run the script
         env: 
-          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
           RDS_CREDENTIALS: ${{ secrets.RDS_CREDENTIALS }}
           RDS_PASSWORD: ${{ secrets.RDS_PASSWORD }}
+          RDS_USER: ${{ secrets.RDS_USER }}
+          RDS_HOST: ${{ secrets.RDS_HOST }}
+          RDS_PORT: ${{ secrets.RDS_PORT }}
+          RDS_DATABASE: ${{ secrets.RDS_DATABASE }}
+          SLACK_CREDENTIALS: ${{ secrets.SLACK_CREDENTIAL }}
         run: python3 agenda.py 
