@@ -73,18 +73,13 @@ checklist = ['Cohort',
 
 with urllib.request.urlopen("https://aicore-files.s3.amazonaws.com/google_credentials.json") as url:
     google_creds = json.loads(url.read().decode())
-# sql_creds = {'RDS_PASSWORD': os.environ['RDS_PASSWORD'],
-#              'RDS_USER': os.environ['RDS_USER'],
-#              'RDS_HOST': os.environ['RDS_HOST'],
-#              'RDS_PORT': os.environ['RDS_PORT'],
-#              'RDS_DATABASE': os.environ['RDS_DATABASE']}
-# slack_token = os.environ['SLACK_CREDENTIALS']
-sql_creds = {'RDS_PASSWORD': "U'm(%K>2r3~Vs;<`",
-             'RDS_USER': 'portal',
-             'RDS_HOST': 'aicore-db.c6jg8rvhomr6.eu-west-1.rds.amazonaws.com',
-             'RDS_PORT': "5432",
-             'RDS_DATABASE': "core_db"}
-slack_token = "xoxp-1007220339588-2140327411266-3058909736272-c157ceec4dae0a6a3194538a5770bf84"
+sql_creds = {'RDS_PASSWORD': os.environ['RDS_PASSWORD'],
+             'RDS_USER': os.environ['RDS_USER'],
+             'RDS_HOST': os.environ['RDS_HOST'],
+             'RDS_PORT': os.environ['RDS_PORT'],
+             'RDS_DATABASE': os.environ['RDS_DATABASE']}
+slack_token = os.environ['SLACK_CREDENTIALS']
+
 slack_client = WebClient(token=slack_token)
 
 # %%
