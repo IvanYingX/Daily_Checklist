@@ -9,6 +9,7 @@ import json
 import urllib.request
 from slack_sdk import WebClient
 import tempfile
+import datetime
 
 def clean_dict(group: dict) -> pd.DataFrame:
     group_df = pd.DataFrame(group)
@@ -104,6 +105,8 @@ if __name__ == '__main__':
                                                     room_idx,
                                                     instructor=False)
         text = daily_agenda + text
+        if datetime.today().weekday() == 1:
+            text += 'Remember that today Phil runs office hours! If you need advice on your career he will be available from 18:30 to 19:30.\n'
         for g in groups:
             populate_checklist(g, daily_checklist, cell)
             room_idx += 1
