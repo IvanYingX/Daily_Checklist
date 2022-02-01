@@ -9,3 +9,4 @@ config/*
 */logs/*
 !*/logs/*.gitkeep
 config/*
+secrets.py

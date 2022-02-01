@@ -4,25 +4,16 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  schedule:
+    - cron:  '30 16 * * 1-4'
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
       - name: Setup Python
@@ -32,11 +23,8 @@ jobs:
         run: pip install -r requirements.txt
         
       - name: "Configure AWS Credentials"
-        # You may pin to the exact commit or the version.
-        # uses: aws-actions/configure-aws-credentials@05b148adc31e091bafbaf404f745055d4d3bc9d2
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          # AWS Access Key ID. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
           aws-access-key-id: AKIASOP6HHLP4R4LBQOU
           aws-secret-access-key: uUyQ53uGsIZ5AonyeeeB3ExSt5xbyhYF56+33wrW
           aws-region: eu-west-3

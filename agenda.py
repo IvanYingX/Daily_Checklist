@@ -1,6 +1,5 @@
 # %%
 import pandas as pd
-from utils.GoogleSheetHelper import retrieve_and_log_daily_results
 from utils.GoogleSheetHelper import GoogleSheetHelper as gsh
 from utils.AgendaHelper import filter_today_events
 from utils.AgendaHelper import print_daily_agenda
@@ -8,6 +7,9 @@ from utils.group_helper import get_students_groups, generate_rooms
 import os
 import json
 import urllib.request
+from slack_sdk import WebClient
+import tempfile
+
 def clean_dict(group: dict) -> pd.DataFrame:
     group_df = pd.DataFrame(group)
     group_df['Breakout Room'] = room_idx
@@ -43,7 +45,7 @@ def clean_checklist():
     daily_checklist = gsh(google_creds,
                           spreadsheet_name='Daily Checklist',
                           page='Main')
-
+    daily_checklist.retrieve_and_log_daily_results()
     daily_checklist.deep_clean()
     daily_checklist.create_page(checklist)
     return daily_checklist
@@ -66,18 +68,27 @@ checklist = ['Cohort',
              'Has seen an instructor?',
              'Updated their project tasks',
              'Any comment?']
-# messages_dir = 'agenda_files/messages_to_send_to_groups'
+
+# Get the credentials for each application
 
 with urllib.request.urlopen("https://aicore-files.s3.amazonaws.com/google_credentials.json") as url:
     google_creds = json.loads(url.read().decode())
-sql_creds = os.environ['RDS_CREDENTIALS']
-sql_creds = json.loads(sql_creds)
-sql_pass = {"RDS_PASSWORD": os.environ['RDS_PASSWORD']}
-sql_creds = {**sql_creds, **sql_pass}
-# slack_creds = os.environ['SLACK_CREDENTIALS']
+# sql_creds = {'RDS_PASSWORD': os.environ['RDS_PASSWORD'],
+#              'RDS_USER': os.environ['RDS_USER'],
+#              'RDS_HOST': os.environ['RDS_HOST'],
+#              'RDS_PORT': os.environ['RDS_PORT'],
+#              'RDS_DATABASE': os.environ['RDS_DATABASE']}
+# slack_token = os.environ['SLACK_CREDENTIALS']
+sql_creds = {'RDS_PASSWORD': "U'm(%K>2r3~Vs;<`",
+             'RDS_USER': 'portal',
+             'RDS_HOST': 'aicore-db.c6jg8rvhomr6.eu-west-1.rds.amazonaws.com',
+             'RDS_PORT': "5432",
+             'RDS_DATABASE': "core_db"}
+slack_token = "xoxp-1007220339588-2140327411266-3058909736272-c157ceec4dae0a6a3194538a5770bf84"
+slack_client = WebClient(token=slack_token)
+
 # %%
 if __name__ == '__main__':
-    # retrieve_and_log_daily_results()
     room_idx = 3
     cell = cohort_cell = 2
     # Get the list of students and their corresponding groups
@@ -105,8 +116,10 @@ if __name__ == '__main__':
         room_idx = new_room_idx
         daily_checklist.merge(f'A{cohort_cell}:A{cell -1}')
         cohort_cell = cell
-        with open(f'agenda_files/messages_to_send_to_groups/{group_name}.txt', 'w') as f:
-            f.write(text)
+        with tempfile.TemporaryDirectory() as tmpdir:
+            with open(f'{tmpdir}/{group_name}.txt', 'w') as f:
+                f.write(text)
+            slack_client.files_upload(channels='G01GCULFZH6',file=f'{tmpdir}/{group_name}.txt')
 
 
 # %%

@@ -6,3 +6,4 @@ sqlalchemy
 slack_sdk
 oauth2client
 urllib3
+boto3

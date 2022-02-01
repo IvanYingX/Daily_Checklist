@@ -200,6 +200,8 @@ def get_students_info(sql_creds:dict):
                         ~students_quizzes['start_date']
                         .isin(['None', 'February 2022'])
                         ]
+    students_quizzes = students_quizzes[
+                        students_quizzes['last_name'] != 'Student']
     students_quizzes['name'] = students_quizzes['name'].fillna('---')
     # Columns that are probably not useful
     # Comment out any columns that you might thing it's woth keeping
@@ -243,8 +245,8 @@ def get_students_info(sql_creds:dict):
                             'milestone_idx',
                             'task_idx',
                             'idx'
-                            ]
-                            )
+                            ], 
+                            ascending=False)
                         )
 
     cleaned_students = cleaned_students.rename(columns={"name": "lesson_name"})

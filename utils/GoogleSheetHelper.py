@@ -6,6 +6,8 @@ import datetime
 from gspread.exceptions import APIError
 import time
 import os
+import boto3
+import tempfile
 
 def wait(seconds):
     for x in range(seconds):
@@ -187,14 +189,15 @@ class GoogleSheetHelper:
         return f'This helper is connected to the {self.sheet_name} sheet'
 
 
-def retrieve_and_log_daily_results():
-    daily_checklist = GoogleSheetHelper(os.environ['GOOGLE_CREDENTIALS'],
-                                        'Daily Checklist',
-                                        'Main'
-                                        )
-    students = pd.DataFrame(daily_checklist.read_content())
-    day = datetime.datetime.now().day
-    month = datetime.datetime.now().month
-    year = datetime.datetime.now().year
-    date = f'{day}-{month}-{year}'
-    students.to_csv(f'daily_tracker/logs/{date}.csv')
+    def retrieve_and_log_daily_results(self):
+        students = self.read_content()
+        yesterday = datetime.datetime.now() - datetime.timedelta(days=1)
+        day = yesterday.day
+        month = yesterday.month
+        year = yesterday.year
+        date = f'{day}-{month}-{year}'
+        client = boto3.client('s3')
+        bucket = 'aicore-daily-logs'
+        with tempfile.TemporaryDirectory() as tmpdir:
+            students.to_csv(f'{tmpdir}/{date}.csv')
+            client.upload_file(f'{tmpdir}/{date}.csv', bucket, f'{date}.csv')
