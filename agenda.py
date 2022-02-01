@@ -9,7 +9,7 @@ import json
 import urllib.request
 from slack_sdk import WebClient
 import tempfile
-import datetime
+from datetime import datetime
 
 def clean_dict(group: dict) -> pd.DataFrame:
     group_df = pd.DataFrame(group)
