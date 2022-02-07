@@ -119,7 +119,7 @@ if __name__ == '__main__':
         with tempfile.TemporaryDirectory() as tmpdir:
             with open(f'{tmpdir}/{group_name}.txt', 'w') as f:
                 f.write(text)
-        slack_client.files_upload(channels='G01GCULFZH6',file=f'{tmpdir}/{group_name}.txt')
+            slack_client.files_upload(channels='G01GCULFZH6',file=f'{tmpdir}/{group_name}.txt')
 
 
 # %%
