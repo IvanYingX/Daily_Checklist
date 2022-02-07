@@ -1,9 +1,9 @@
 # %%
 from utils.SQLHelper import SQLHelper as sqlh
 import random
+from datetime import datetime
 
-
-def group_students(students: dict, group_size: int = 3):
+def group_students_by_project(students: dict, group_size: int = 3):
 
     groups = []
     idx = 0
@@ -15,6 +15,39 @@ def group_students(students: dict, group_size: int = 3):
         final_group = students[idx:]
         if len(final_group) > 0:
             students.append(final_group)
+
+    def map_student(student):
+        return {
+            'name': student['first_name'].capitalize(),
+            'last name': student['last_name'].capitalize(),
+            'lesson': student['lesson_name'],
+            'project_name': student['project_name'],
+            'task': student['task'],
+            'milestone': student['milestone']
+        }
+
+    def map_group(group):
+        return list(map(map_student, group))
+
+    groups = list(map(map_group, groups))
+    return groups
+
+
+def group_students(students: dict, group_size: int = 3):
+
+    groups = []
+    idx = 0
+    while idx < len(students):
+        group = students[idx: idx + group_size]
+        groups.append(group)
+        idx += group_size
+    if len(groups[-1]) < (group_size//2 + 1):
+        groups[-2].extend(groups[-1])
+        groups.pop()
+    # else:
+    #     final_group = students[idx:]
+    #     if len(final_group) > 0:
+    #         students.append(final_group)
 
     def map_student(student):
         return {
@@ -58,6 +91,12 @@ def print_groups(groups, instructor=False, start_room_idx=2):
             else:
                 text += f'\t- {student["name"]}\n'
 
+    if datetime.today().weekday() == 1:
+        text += ('\nRemember that today Phil runs office hours!' +
+                 ' If you need advice on your career he will be' +
+                 'available from 18:30 to 19:30.\n')
+       
+
     return text, room_idx
 
 
@@ -84,6 +123,9 @@ def get_group_name_from_start_date(start_date):
 
 def filter_by_cohort(people, group_name):
     return [p for p in people if p['group_name'] == group_name]
+
+def filter_by_project(people, project_name):
+    return [p for p in people if p['project_name'] == project_name]
 
 
 def get_last_element_by_group(df, column: str = 'user_id'):
@@ -198,7 +240,7 @@ def get_students_info(sql_creds:dict):
 
     students_quizzes = students_quizzes[
                         ~students_quizzes['start_date']
-                        .isin(['None', 'February 2022'])
+                        .isin(['None', 'February 2022', 'March 2022'])
                         ]
     students_quizzes = students_quizzes[
                         students_quizzes['last_name'] != 'Student']
@@ -250,7 +292,26 @@ def get_students_info(sql_creds:dict):
                         )
 
     cleaned_students = cleaned_students.rename(columns={"name": "lesson_name"})
+    cleaned_students = cleaned_students.fillna('---')
     people = cleaned_students.to_dict('records')
+    return people
+
+
+def get_students_by_project(sql_creds:dict):
+    '''
+    Return a list of dictionaries with
+    info about each student
+    groups of students'''
+
+    people = get_students_info(sql_creds)
+
+    # unique_start_dates = {p['start_date'] for p in people}
+    # group_names = get_group_names(unique_start_dates)
+
+    people = [{**p, 'project_name':
+              get_group_name_from_start_date(p['project_date'])}
+              for p in people]
+
     return people
 
 
@@ -272,12 +333,24 @@ def get_students_groups(sql_creds:dict):
     return people, group_names
 
 
-def generate_rooms(people, group_name, room_idx, instructor=False):
-    cohort = filter_by_cohort(people, group_name)
-    groups = group_students(cohort, )
+def generate_rooms(people, group_name, room_idx, group_size, instructor=False):
+    group = filter_by_cohort(people, group_name)
+    groups = group_students(group, group_size=group_size)
     text, new_room = print_groups(
                     groups,
-                    instructor=False,
+                    instructor=instructor,
+                    start_room_idx=room_idx,
+                    )
+    return text, new_room, groups
+
+
+
+def generate_rooms_by_project(people, project_name, room_idx, group_size, instructor=False):
+    project = filter_by_project(people, project_name)
+    groups = group_students(project, group_size=group_size)
+    text, new_room = print_groups(
+                    groups,
+                    instructor=instructor,
                     start_room_idx=room_idx,
                     )
     return text, new_room, groups

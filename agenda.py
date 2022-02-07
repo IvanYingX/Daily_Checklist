@@ -3,7 +3,7 @@ import pandas as pd
 from utils.GoogleSheetHelper import GoogleSheetHelper as gsh
 from utils.AgendaHelper import filter_today_events
 from utils.AgendaHelper import print_daily_agenda
-from utils.group_helper import get_students_groups, generate_rooms
+from utils.group_helper import get_students_groups, generate_rooms, get_students_info
 import os
 import json
 import urllib.request
@@ -42,14 +42,11 @@ def get_today_records():
     return pd.concat([demos_df, presentations_df], axis=0)
 
 
-def clean_checklist():
-    daily_checklist = gsh(google_creds,
-                          spreadsheet_name='Daily Checklist',
-                          page='Main')
-    daily_checklist.retrieve_and_log_daily_results()
-    daily_checklist.deep_clean()
-    daily_checklist.create_page(checklist)
-    return daily_checklist
+def clean_checklist(spreadsheet, retrieve=True):
+    if retrieve:
+        spreadsheet.retrieve_and_log_daily_results()
+    spreadsheet.deep_clean()
+    spreadsheet.create_page(checklist)
 
 
 def populate_checklist(group, daily_checklist, cell, verbose=False):
@@ -89,6 +86,7 @@ if __name__ == '__main__':
     cell = cohort_cell = 2
     # Get the list of students and their corresponding groups
     people, group_names = get_students_groups(sql_creds)
+    # people, groups = get_students_groups(sql_creds)
     # Get the list of events from the google sheet
     records_df = get_today_records()
     # Filter events that are taking place today
@@ -97,16 +95,20 @@ if __name__ == '__main__':
     daily_agenda = print_daily_agenda(today_events)
     # Clean the daily checklist spreadsheet
     print('Cleaning the spreadsheet')
-    daily_checklist = clean_checklist()
+    daily_checklist = gsh(google_creds,
+                        spreadsheet_name='Daily Checklist',
+                        page='Main')
+    clean_checklist(daily_checklist)
     print('Spreadsheet cleaned!')
     for group_name in group_names:
+    # project_names = {p['project_name'] for p in people}
+    # for project_name in project_names:
         text, new_room_idx, groups = generate_rooms(people,
                                                     group_name,
                                                     room_idx,
+                                                    group_size=4,
                                                     instructor=False)
         text = daily_agenda + text
-        if datetime.today().weekday() == 1:
-            text += 'Remember that today Phil runs office hours! If you need advice on your career he will be available from 18:30 to 19:30.\n'
         for g in groups:
             populate_checklist(g, daily_checklist, cell)
             room_idx += 1
@@ -117,7 +119,7 @@ if __name__ == '__main__':
         with tempfile.TemporaryDirectory() as tmpdir:
             with open(f'{tmpdir}/{group_name}.txt', 'w') as f:
                 f.write(text)
-            slack_client.files_upload(channels='G01GCULFZH6',file=f'{tmpdir}/{group_name}.txt')
+        slack_client.files_upload(channels='G01GCULFZH6',file=f'{tmpdir}/{group_name}.txt')
 
 
 # %%
