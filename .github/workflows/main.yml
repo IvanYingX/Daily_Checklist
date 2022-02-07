@@ -4,8 +4,8 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  schedule:
-    - cron:  '30 16 * * 1-4'
+#   schedule:
+#     - cron:  '30 16 * * 1-4'
 
   workflow_dispatch:
 
