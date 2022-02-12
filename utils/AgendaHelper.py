@@ -17,9 +17,10 @@ def greeting_group_message():
 
 def greeting_person_messages(name):
     return random.choice([
-            f'Hi {name}!',
-            f'Hey {name}',
-            f'What\'s up {name}?',
+                f"How are you doing {name}?",
+                f"Hello {name}! How are you doing today?",
+                f"Hey {name}! How is it going?",
+                f"Hi {name}! Hope you are having a good day!",
             ])
 
 
@@ -105,21 +106,27 @@ def generate_dict_from_events(events: pd.DataFrame, demo_room: int) -> dict:
     if events['Type'] == 'Demo':
         out_dict['Name'] = (f"Demo hosted by {events['Host']}: " +
                             f"{events['Name']}. " +
-                            f"{events['Host']} will show you" +
+                            f"{events['Host']} will show you " +
                             f"{events['Description']}. " +
                             f"The demo will be hosted in room {demo_room}. " +
                             f"Difficulty: {events['Difficulty']}")
-        return out_dict
     elif events['Type'] == 'Presentation':
         out_dict['Name'] = (f"{events['Name']} " +
                             f"hosted by {events['Host']}. " +
                             f"{events['Host']} will " +
                             f"{events['Description']}")
-        return out_dict
+    elif events['Type'] == 'Q&A':
+        out_dict['Name'] = (f"{events['Name']} " +
+                            f"hosted by {events['Host']}. " +
+                            f"If you are on the {events['Project']} project, " +
+                            f"{events['Host']} will help you " +
+                            f"{events['Description']}")
+    else:
+        raise ValueError(f"Unknown event type: {events['Type']}")
+    return out_dict
 
 
 def print_daily_agenda(today_events: pd.DataFrame,
-                       name: str = None,
                        demo_room: int = 2,
                        default_agenda: str =
                        'agenda_files/default_agenda.yaml'):
@@ -129,12 +136,7 @@ def print_daily_agenda(today_events: pd.DataFrame,
 
     DEFAULT_AGENDA = read_agenda_from_file(default_agenda)
 
-    if name:
-        greeting = greeting_person_messages(name)
-    else:
-        greeting = greeting_group_message()
-
-    agenda = greeting + '\n\n' + random.choice(agenda_intro_messages) + '\n'
+    agenda = random.choice(agenda_intro_messages) + '\n'
 
     events_agenda = []
     for _, event in today_events.iterrows():
