@@ -8,6 +8,7 @@ import time
 import os
 import boto3
 import tempfile
+import re
 
 def wait(seconds):
     for x in range(seconds):
@@ -106,16 +107,29 @@ class GoogleSheetHelper:
         new_data: pd.DataFrame
             The data to append
         '''
-        if len(new_data) > 0:
-            self.sheet.append_rows(new_data.values.tolist())
+        if isinstance(new_data, pd.DataFrame):
+            if len(new_data) > 0:
+                res = self.sheet.append_rows(new_data.values.tolist())
+                if verbose is True:
+                    print(f'{len(new_data)} new rows added to {self.page}')
+            elif len(new_data) == 1:
+                res = self.sheet.append_rows(new_data.values.tolist())
+                if verbose is True:
+                    print(f'1 new row added to {self.page}')
+            else:
+                print(f'No new rows added to {self.page}')
+        elif isinstance(new_data, list):
+            res = self.sheet.append_rows(new_data)
             if verbose is True:
                 print(f'{len(new_data)} new rows added to {self.page}')
-        elif len(new_data) == 1:
-            self.sheet.append_rows(new_data.values.tolist())
-            if verbose is True:
-                print(f'1 new row added to {self.page}')
-        else:
-            print(f'No new rows added to {self.page}')
+        if res:
+            pattern = re.compile(r'\d+')
+            range_cells = res['updates']['updatedRange'].split('!')[1]
+            rows = re.findall(pattern, range_cells)
+            rows = [int(x) for x in rows]
+            columns = [s for s in list(range_cells) if s.isalpha()]
+            cols = [ord(s) - ord('A') + 1 for s in columns]
+            return (rows, cols)
 
     @prevent_api_error
     def clear(self) -> None:
@@ -151,6 +165,22 @@ class GoogleSheetHelper:
         ]
         self.spreadsheet.batch_update({"requests": requests})
         self.clear()
+
+
+    @prevent_api_error
+    def add_tick_box(self, rows: list, columns: list) -> None:
+        sheet_id = self.sheet._properties['sheetId']
+        requests = {"requests": [
+            {
+                "repeatCell": {
+                    "cell": {"dataValidation": {"condition": {"type": "BOOLEAN"}}},
+                    "range": {"sheetId": sheet_id, "startRowIndex": rows[0]-1, "endRowIndex": rows[1], "startColumnIndex": columns[0]-1, "endColumnIndex": columns[1]},
+                    "fields": "dataValidation"
+                }
+            }
+            ]}
+        self.spreadsheet.batch_update(requests)
+
 
     @prevent_api_error
     def merge(self, range: str) -> None:

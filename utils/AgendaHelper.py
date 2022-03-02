@@ -21,6 +21,10 @@ def greeting_person_messages(name):
                 f"Hello {name}! How are you doing today?",
                 f"Hey {name}! How is it going?",
                 f"Hi {name}! Hope you are having a good day!",
+                f"How is it going {name}?",
+                f"Hey {name}! How's it going?",
+                f"Hi {name}! How's it going?",
+                f"Good afternoon {name}! How are you doing?",
             ])
 
 
@@ -116,11 +120,18 @@ def generate_dict_from_events(events: pd.DataFrame, demo_room: int) -> dict:
                             f"{events['Host']} will " +
                             f"{events['Description']}")
     elif events['Type'] == 'Q&A':
-        out_dict['Name'] = (f"{events['Name']} " +
-                            f"hosted by {events['Host']}. " +
-                            f"If you are on the {events['Project']} project, " +
-                            f"{events['Host']} will help you " +
-                            f"{events['Description']}")
+        if events['Project'] == 'Any':
+            out_dict['Name'] = (f"Q&A with {events['Host']}. " +
+                                f"{events['Host']} will " +
+                                f"{events['Description']}. " + 
+                                f"The session will be hosted in room {demo_room}. ")
+        else:
+            out_dict['Name'] = (f"{events['Name']} " +
+                                f"hosted by {events['Host']}. " +
+                                f"If you are on the {events['Project']} project, " +
+                                f"{events['Host']} will help you " +
+                                f"{events['Description']}. " + 
+                                f"The session will be hosted in room {demo_room}. ")
     else:
         raise ValueError(f"Unknown event type: {events['Type']}")
     return out_dict

@@ -10,3 +10,4 @@ config/*
 !*/logs/*.gitkeep
 config/*
 secrets.py
+backup_files/*
