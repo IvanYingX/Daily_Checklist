@@ -141,7 +141,8 @@ def get_people(by='project'):
 def send_agenda_instructors(today_events):
     slack_token = os.environ['SLACK_INTERNAL']
     slack_instructors = WebClient(token=slack_token)
-    daily_agenda = print_daily_agenda(today_events)
+    daily_agenda = print_daily_agenda(today_events,
+                                      demo_room=3)
     daily_agenda = 'Hey team, this is what users will be doing today:\n' + daily_agenda
     daily_agenda += '\n\nPlease, make sure to open the checklist before the meetup starts!' 
     slack_instructors.chat_postMessage(channel='C033XF13HJS', text=daily_agenda)
@@ -161,8 +162,8 @@ if __name__ == '__main__':
     people, project_names = get_people(by=group_by)
 
     today_events = get_today_records()
-    send_agenda_instructors(today_events)
-    daily_checklist = get_checklist(clean_sheet=True, retrieve=True)
+    # send_agenda_instructors(today_events)
+    daily_checklist = get_checklist(clean_sheet=True, retrieve=False)
     code_room = int(len(people) / group_size + 1)
     generate_progress(people)
     
@@ -176,7 +177,7 @@ if __name__ == '__main__':
                                                 today_events=today_events,
                                                 slack_client=slack_client,
                                                 by=group_by,
-                                                # link='https://us02web.zoom.us/j/87189992037',
+                                                link='https://us02web.zoom.us/meeting/register/tZwvduGhpzIqGNd50y8di9OsAahwG5S-PgMs',
                                                 users_not_to_message=users_not_to_message
                                                 )
         for g in groups:

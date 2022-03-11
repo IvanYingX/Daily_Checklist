@@ -306,38 +306,40 @@ def send_message(groups, today_events, start_room_idx, demo_room, code_room, sla
     for group in groups:
         room_idx += 1
         for student in group:
+            roomates = ''
             if student['preferred_name'] == '---':
                 intro = greeting_person_messages(student['name'])
             else:
                 intro = greeting_person_messages(student['preferred_name'])
-            text = f'{intro}\n'
+            text = f'{intro} Just to avoid any confusion, here is the FINAL version of YOUR agenda\n\n\n'
+            text += f'Today your assigned breakout room will be Room {room_idx - 1} \n'
+            for other_student in group:
+                if other_student['name'] != student['name']:
+                    roomates += f'{other_student["preferred_name"]}, '
+            roomates = ' '.join(roomates.split(' ')[:-2]) + ' and ' + roomates.split(' ')[-2]
+            text += f'{roomates} will join the same breakout room.\n\n'
             text += print_daily_agenda(today_events=today_events,
                                         demo_room=demo_room,
                                         default_agenda=
                                         'agenda_files/default_agenda.yaml')
-            text += f'You will go to breakout room {room_idx - 1} with '
-            for other_student in group:
-                if other_student['name'] != student['name']:
-                    text += f'{other_student["preferred_name"]} '
-            text = ' '.join(text.split(' ')[:-2]) + ' and ' + text.split(' ')[-2]
-            if link:
-                text += f'\nImportant! Today\'s zoom link has changed! You can access the new link here: {link}'
+            # if link:
+            #     text += f'\nImportant! Today\'s zoom link has changed! You can access the new link here: {link}'
             if datetime.today().weekday() == 1:
-                text += ('\nRemember that today Phil runs office hours!' +
+                text += ('\n\nRemember that today Phil runs office hours!' +
                         ' If you need advice on your career he will be' +
                         ' available from 18:30 to 19:30.\n')
             if datetime.today().weekday() == 3:
-                text += ('\nToday is the last day of the week!\n' +
-                        'Let\'s finish it by doing something interesting.' +
-                        f' From 21:00 to 21:30, some peers will go to room {code_room}' + 
+                text += ('\nSame as last week, ' +
+                        f'from 21:00 to 21:30, some peers will go to room {code_room}' + 
                         ' to work on some LeetCode challenges. Feel free to join them to improve' +
                         ' your Python and problem solving skills!')
 
-            text += ('\n\nOnce again, here is all the students\' tasks and milestones that they have alredy reached.' + 
-                     'You can check that out in this link: https://docs.google.com/spreadsheets/d/1h9fHnDhJu23RU8V0aT08JnrKdKviJJAlEzUofiZDTq8/edit?usp=sharing \n' + 
-                     'That way, you can check who has reached that milestone you are struggling with and ask them! ' +
-                     '\n\nA new feature we will release today is that the support requests will be now public, so you can ask for help from anyone!' +
-                     '\nYou will see the breakout room of the user that is asking for help, so we can create our own StackOverflow community!')
+            text += ('\nYou can check your peer\'s progress in this <https://docs.google.com/spreadsheets/d/1h9fHnDhJu23RU8V0aT08JnrKdKviJJAlEzUofiZDTq8/edit?usp=sharing|google spreadsheet> \n' + 
+                     '\n\nRemember to check the <#C035MRY0MSL> channel to check how you can help your peers on their issues! Also, your support requests will be reflected here, so check if someone has provided a solution and give them a good :+1:' + 
+                     f'\n\nImportant!!! We have changed the Zoom link for the meetup. Please, register at this <{link}|link with your PORTAL EMAIL ADDRESS>. It takes only 20 seconds, and you will only need to do it once.'
+                     '\nYou can see that the new link is already in the AiCore <https://calendar.google.com/calendar/u/0?cid=dGhlYWljb3JlLmNvbV8ydXFmYmk2bWtrcGczdXRldTh2MjNnY21ia0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t|google calendar>' + 
+                     '\n\nSo sorry for all the messages!!!')
+
 
             if slack_client:
                 channel = student['slack_id']

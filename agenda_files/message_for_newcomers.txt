@@ -1,0 +1,22 @@
+This is Ivan, one of the instructors at AiCore
+
+First of all, just wanted to welcome you to the team! Tonight, you will have your first session, for which Harry will be responsible to run the orientation. After that, we will explain the scope of your first project.
+Just to let you know, we run these session in different breakout rooms in a zoom call. Harry will explain more on that tonight. However, for the orientation, you will go to room 2 with the rest of new users to attend to orientation.
+From tomorrow, you will receive messages from me explaining what to do. For example, today's agenda looked like this for the rest of users:
+
+Here's what's happening today:
+- 1830-1835: Weekly Update hosted by Harry. Harry will tell you what's happening this week at AiCore
+- 1835-1930: Focused independent work on your next project task, or reading the related content
+- 1840-1930: Demo hosted by Ivan: Webscraping - Zoopla Challenge Design and Testing. Ivan will show you how to implement a good structure on your code, adding type hinting and docstrings. We will also see how to organize your packages and tests . The demo will be hosted in room 3. Difficulty: Intermediate
+- 1930-2130: Work with your peers on your next project task
+- 2000-2100: Computer Vision RPS Demo hosted by Ivan. If you are on the Rock Paper Scissors project, Ivan will help you showing you how to train a model on Teachable Machine and download it to process the output using keras. The session will be hosted in room 3.
+ 
+We give information about ideal outcome of the session, as well as events happening that day.
+
+With that said, hope you have an exciting first day. Looking forward to meeting you soon!
+
+Btw, almost forgot something very important! This is the link for the meeting: https://us02web.zoom.us/j/6887053942?pwd=VmlzRGdnTWFrLzRwcTJ5elgzUUtmdz09
+
+You can add all the events of AiCore to your agenda using this link: https://calendar.google.com/calendar/u/0?cid=dGhlYWljb3JlLmNvbV8ydXFmYmk2bWtrcGczdXRldTh2MjNnY21ia0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t
+
+The first session starts at 18:30. See you there!
